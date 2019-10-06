@@ -6,6 +6,8 @@ Projeto Java 8 usando o framework Spring Boot e seus Modulos WEB, DATA, também 
 * Importe os arquivos para o eclipse como um projeto mavem existente
 * Verifique se não existe algum erro(o mavem baixara as dependencias, isso pode demorar um pouco)
 * Vá no pacote config e Execute o arquivo MainApplication.java
+* Após isso o Projeto subirá na porta 8080 em localhost
+* [Você pode testar nessa URL ](http://localhost:8080/swagger-ui.html)
 
 ### Requisitos
 Ter os seguintes itens instalados:
