@@ -9,7 +9,7 @@ public class JSerialCommArduino {
 	public static InputStream arduinoStream = null;
 	public static int PACKET_SIZE_IN_BYTES = 8;
 
-	public static void main(String[] args) {
+	public void iniciaArduino() {
 
 		int len = SerialPort.getCommPorts().length;
 		SerialPort serialPorts[] = new SerialPort[len];

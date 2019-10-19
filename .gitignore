@@ -32,4 +32,7 @@ build/
 
 ### Eclipse ###
 .metadata/
-bin/ 
+bin/
+
+### MySQL ###
+mysql-connector-java-5.1.47.jar

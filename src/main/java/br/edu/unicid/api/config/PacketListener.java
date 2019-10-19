@@ -45,24 +45,7 @@ public final class PacketListener implements SerialPortPacketListener {
 		}
 
 		if (byteSize == JSerialCommArduino.PACKET_SIZE_IN_BYTES && !tagUID.equals(lastUID)) {
-//			Bagagem bagagem = new Bagagem();
-//
-//			try {
-//				BagagemDAO bagagemDAO = new BagagemDAO();
-//				bagagem = bagagemDAO.consultarBagagem(tagUID);
-//			} catch(Exception e) {
-//				e.printStackTrace();
-//			}
-//
-//			System.out.println("\n\nBagagem encontrada!"
-//					+ "\nBagagem: " + bagagem.getTagUID()
-//					+ "\nPassageiro: " + bagagem.getNomePassageiro()
-//					+ "\nPoltrona: " + bagagem.getPoltronaPassageiro()
-//					+ "\nFavor se dirigir at� o setor vermelho.");
-//
-//			System.out.println("==============================");
-//			
-//			lastUID = tagUID;
+			// chamar endpoint de consulta de bagagem
 			
 			System.out.println(tagUID);
 		}
