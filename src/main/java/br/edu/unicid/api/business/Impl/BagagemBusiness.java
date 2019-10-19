@@ -1,0 +1,39 @@
+package br.edu.unicid.api.business.Impl;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+
+import br.edu.unicid.api.business.IBagagemBusiness;
+import br.edu.unicid.api.domain.Bagagem;
+import br.edu.unicid.api.persistence.IBagagemRepository;
+
+@Service
+public class BagagemBusiness implements IBagagemBusiness{
+
+private static final Logger LOGGER = LoggerFactory.getLogger(PassageiroBusiness.class);
+	
+	@Autowired
+	private IBagagemRepository bagagemRepository;
+	@Override
+	public HttpStatus cadastrarPassagerio(Bagagem bagagem) {
+		LOGGER.info("Cadastrando uma Nova Bagagem");
+		HttpStatus httpStatus;
+		try {
+			bagagemRepository.save(bagagem);
+			httpStatus = HttpStatus.ACCEPTED;
+		} catch (HttpClientErrorException e) {
+			LOGGER.error("Não foi possivel cadastra bagagem do Passageiro", e);
+			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		return httpStatus;
+	}
+	
+
+	
+	
+
+}
