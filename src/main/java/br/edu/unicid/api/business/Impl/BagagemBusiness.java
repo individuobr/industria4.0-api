@@ -9,6 +9,9 @@ import org.springframework.web.client.HttpClientErrorException;
 
 import br.edu.unicid.api.business.IBagagemBusiness;
 import br.edu.unicid.api.domain.Bagagem;
+import br.edu.unicid.api.domain.Passageiro;
+import br.edu.unicid.api.exception.BagagemNaoEncontradaException;
+import br.edu.unicid.api.exception.PassageiroNaoEncontradoException;
 import br.edu.unicid.api.persistence.IBagagemRepository;
 
 @Service
@@ -32,6 +35,13 @@ private static final Logger LOGGER = LoggerFactory.getLogger(PassageiroBusiness.
 		return httpStatus;
 	}
 	
+	public Bagagem buscarBagagem(String hashArduino) {
+		Bagagem bagagem = bagagemRepository.buscarPorHashArduino(hashArduino);
+		if(bagagem == null) {
+			throw new BagagemNaoEncontradaException("O hashArduino da bagagem não pode ser encontrado!");
+		}
+		return bagagem;
+	}
 
 	
 	
