@@ -8,7 +8,5 @@ import br.edu.unicid.api.domain.Bagagem;
 public interface IBagagemBusiness {
 
 	HttpStatus cadastrarPassagerio(Bagagem bagagem);
-	
-	
 
 }

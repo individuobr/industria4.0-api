@@ -1,7 +1,5 @@
 package br.edu.unicid.api.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.unicid.api.business.IBagagemBusiness;
 import br.edu.unicid.api.business.Impl.BagagemBusiness;
-import br.edu.unicid.api.business.Impl.PassageiroBusiness;
 import br.edu.unicid.api.domain.Bagagem;
-import br.edu.unicid.api.domain.Passageiro;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.unicid.api.business.IPassageiroBusiness;
 import br.edu.unicid.api.business.Impl.PassageiroBusiness;
+import br.edu.unicid.api.config.PacketListener;
 import br.edu.unicid.api.domain.Passageiro;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,6 +28,8 @@ public class PassageiroController {
 
 	@Autowired
 	private PassageiroBusiness passageiro;
+	@Autowired
+	private PacketListener listener;
 	
 	@Autowired
 	private IPassageiroBusiness passageiroBusiness;
@@ -56,4 +59,7 @@ public class PassageiroController {
 		Passageiro passageiros = passageiro.buscarPassageiro(id);
 		return ResponseEntity.status(HttpStatus.OK).body(passageiros);
 	}
+	
+	
+	
 }

@@ -42,6 +42,17 @@ private static final Logger LOGGER = LoggerFactory.getLogger(PassageiroBusiness.
 		}
 		return bagagem;
 	}
+	
+	public Bagagem buscarBagagemPorIdArduino(String hashArduino) {
+		Bagagem bagagem;
+		try {
+			bagagem = bagagemRepository.findById(hashArduino).get();			
+		} catch (HttpClientErrorException e) {
+			bagagem = null;
+			LOGGER.error("Não foi possivel localizar bagagem do Passageiro", e);			
+		}
+		return bagagem;
+	}
 
 	
 	

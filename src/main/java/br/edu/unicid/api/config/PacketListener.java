@@ -5,15 +5,23 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortEvent;
 import com.fazecast.jSerialComm.SerialPortPacketListener;
 
-@Component
-public final class PacketListener implements SerialPortPacketListener {
+import br.edu.unicid.api.business.Impl.BagagemBusiness;
+import br.edu.unicid.api.domain.Bagagem;
 
+@Component
+public class PacketListener implements SerialPortPacketListener {
+
+	
+	@Autowired
+	private BagagemBusiness business;
+	
 	public String lastUID;
 	
 	public void cleanLastUID () {
@@ -46,11 +54,13 @@ public final class PacketListener implements SerialPortPacketListener {
 		} catch (UnsupportedEncodingException ex) {
 			Logger.getLogger(PacketListener.class.getName()).log(Level.SEVERE, null, ex);
 		}
-
 		if (byteSize == JSerialCommArduino.PACKET_SIZE_IN_BYTES && !tagUID.equals(lastUID)) {
 			// chamar endpoint de consulta de bagagem
 			
 			System.out.println(tagUID);
+			Bagagem bagagem = business.buscarBagagemPorIdArduino(tagUID); 
+			System.out.println(bagagem);
 		}
 	}
+	
 }

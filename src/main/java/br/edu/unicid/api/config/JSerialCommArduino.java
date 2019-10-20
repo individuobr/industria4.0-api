@@ -2,6 +2,7 @@ package br.edu.unicid.api.config;
 import com.fazecast.jSerialComm.SerialPort;
 import java.io.InputStream;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,10 +10,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class JSerialCommArduino {
 
-
 	public static SerialPort arduinoPort = null;
 	public static InputStream arduinoStream = null;
 	public static int PACKET_SIZE_IN_BYTES = 8;
+	
+	@Autowired
+	private PacketListener listener;
 
 	@Bean
 	public void iniciaArduino() {
@@ -33,8 +36,8 @@ public class JSerialCommArduino {
 
 		}
 
-		PacketListener listener = new PacketListener();
-		arduinoPort.addDataListener(listener);
+		//PacketListener listener = new PacketListener();
+		arduinoPort.addDataListener(this.listener);
 		listener.cleanLastUID();
 	}
 
