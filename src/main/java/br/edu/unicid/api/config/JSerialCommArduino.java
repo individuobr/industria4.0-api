@@ -2,6 +2,11 @@ package br.edu.unicid.api.config;
 import com.fazecast.jSerialComm.SerialPort;
 import java.io.InputStream;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+
+@Configuration
 public class JSerialCommArduino {
 
 
@@ -9,6 +14,7 @@ public class JSerialCommArduino {
 	public static InputStream arduinoStream = null;
 	public static int PACKET_SIZE_IN_BYTES = 8;
 
+	@Bean
 	public void iniciaArduino() {
 
 		int len = SerialPort.getCommPorts().length;
