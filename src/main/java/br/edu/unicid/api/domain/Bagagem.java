@@ -1,5 +1,6 @@
 package br.edu.unicid.api.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,7 +12,9 @@ public class Bagagem {
 	@Id
 	private String hashArduino;
 	private Float peso;
-	private Integer idPassageiro;
+	private Integer idPassageiro;	
+	@Column(columnDefinition="COMMENT '0 = Bagagem não ainda não está na esterira, 1 = Bagagem está na esterira,2 = Bagagem Retirada.'")
+	private Integer status; 
 	
 	public Bagagem() {
 	} 
@@ -43,6 +46,15 @@ public class Bagagem {
 	public void setIdPassageiro(Integer idPassageiro) {
 		this.idPassageiro = idPassageiro;
 	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	
 	
 	
 	

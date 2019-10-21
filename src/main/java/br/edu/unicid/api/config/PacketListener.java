@@ -2,9 +2,10 @@ package br.edu.unicid.api.config;
 import java.io.UnsupportedEncodingException;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +19,7 @@ import br.edu.unicid.api.domain.Bagagem;
 @Component
 public class PacketListener implements SerialPortPacketListener {
 
-	
+	private static final Logger LOGGER = LoggerFactory.getLogger(PacketListener.class);
 	@Autowired
 	private BagagemBusiness business;
 	
@@ -52,14 +53,16 @@ public class PacketListener implements SerialPortPacketListener {
 		try {
 			byteSize = tagUID.getBytes("UTF-8").length;
 		} catch (UnsupportedEncodingException ex) {
-			Logger.getLogger(PacketListener.class.getName()).log(Level.SEVERE, null, ex);
+			LOGGER.error("Erro ao converter Bytes"+ex);;	
 		}
 		if (byteSize == JSerialCommArduino.PACKET_SIZE_IN_BYTES && !tagUID.equals(lastUID)) {
 			// chamar endpoint de consulta de bagagem
 			
 			System.out.println(tagUID);
-			Bagagem bagagem = business.buscarBagagemPorIdArduino(tagUID); 
-			System.out.println(bagagem);
+			Boolean resposta = business.buscarBagagemPorIdArduinoEAtualizaStatus(tagUID); 
+			if(!resposta) {
+				LOGGER.info("Bagagem Não Encontrada");
+			}
 		}
 	}
 	
