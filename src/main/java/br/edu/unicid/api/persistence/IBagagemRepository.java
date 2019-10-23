@@ -9,5 +9,5 @@ public interface IBagagemRepository extends JpaRepository<Bagagem, String>{
 	
 	@Query("select b from Bagagem b where b.hashArduino = ?1")
 	Bagagem buscarPorHashArduino(String hashArduino);
-
+	
 }

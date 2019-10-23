@@ -1,5 +1,7 @@
 package br.edu.unicid.api.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,6 +49,13 @@ public class BagagemController {
 		
 		Bagagem bagagens = bagagem.buscarBagagem(hashArduino);
 		return ResponseEntity.status(HttpStatus.OK).body(bagagens);
+	}
+	
+	@ApiOperation(value = "Setar status da mala para 0")
+	@PutMapping("/zerarStatus")
+	public void zerarStatus() {
+
+		bagagem.zerarStatusMala();
 	}
 
 }

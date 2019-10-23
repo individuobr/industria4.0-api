@@ -1,5 +1,6 @@
 package br.edu.unicid.api.business.Impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -82,6 +83,14 @@ public class BagagemBusiness implements IBagagemBusiness {
 			return false;
 		}
 
+	}
+	
+	public void zerarStatusMala() {
+		List<Bagagem> lista = bagagemRepository.findAll();
+		for (Bagagem bagagem : lista) {
+			bagagem.setStatus(0);
+			bagagemRepository.save(bagagem);
+		}
 	}
 
 }
