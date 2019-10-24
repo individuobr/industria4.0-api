@@ -1,5 +1,7 @@
 package br.edu.unicid.api.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,6 +48,12 @@ public class BagagemController {
 		
 		Bagagem bagagens = bagagem.buscarBagagem(hashArduino);
 		return ResponseEntity.status(HttpStatus.OK).body(bagagens);
+	}
+	
+	@ApiOperation(value = "Buscar todas as bagagens na esteira")
+	@GetMapping("/esteira/all")
+	public ResponseEntity<List<Bagagem>> buscaBagageNaEsteira(){
+		return bagagemBusiness.buscaBagageNaEsteira();		
 	}
 
 }
