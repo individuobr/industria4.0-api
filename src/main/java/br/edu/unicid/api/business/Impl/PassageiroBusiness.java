@@ -51,4 +51,11 @@ public class PassageiroBusiness implements IPassageiroBusiness{
 		}
 		return listaPassageiro;
 	}
+	public List<Passageiro> listarPassageiro(String nome, String cpf) {
+		List<Passageiro> listaPassageiro = passageiroRepository.buscarPeloNome(nome, cpf);
+		if (listaPassageiro.isEmpty()) {
+			throw new PassageiroNaoEncontradoException("O passageiro não pode ser encontrato!");
+		}
+		return listaPassageiro;
+	}
 }

@@ -28,8 +28,6 @@ public class PassageiroController {
 
 	@Autowired
 	private PassageiroBusiness passageiro;
-	@Autowired
-	private PacketListener listener;
 	
 	@Autowired
 	private IPassageiroBusiness passageiroBusiness;
@@ -49,6 +47,13 @@ public class PassageiroController {
 	@GetMapping("/buscarNome/{nome}")
 	public List<Passageiro> buscarPeloNome(@PathVariable(value="nome") String nome) {
 		List<Passageiro> passageiros = passageiro.listarPassageiro(nome);
+		return passageiros;
+	}
+	
+	@ApiOperation(value = "Buscar passageiro pelo nome")
+	@GetMapping("/buscarNome/{nome}/{cpf}")
+	public List<Passageiro> buscarPeloNome(@PathVariable(value="nome") String nome, @PathVariable(value="cpf") String cpf) {
+		List<Passageiro> passageiros = passageiro.listarPassageiro(nome, cpf);
 		return passageiros;
 	}
 	

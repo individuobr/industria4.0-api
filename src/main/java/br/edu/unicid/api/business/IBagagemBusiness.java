@@ -13,6 +13,4 @@ public interface IBagagemBusiness {
 	HttpStatus cadastrarPassagerio(Bagagem bagagem);
 
 	ResponseEntity<List<Bagagem>> buscaBagageNaEsteira();
-	
-
 }

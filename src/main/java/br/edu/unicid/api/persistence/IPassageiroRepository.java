@@ -14,6 +14,9 @@ public interface IPassageiroRepository extends JpaRepository<Passageiro, Integer
 	@Query("select p from Passageiro p where p.nome = ?1")
 	List<Passageiro> buscarPeloNome(String nome);
 	
+	@Query(value = "select * from passageiro where nome = ? and cpf = ?", nativeQuery=true)
+	List<Passageiro> buscarPeloNome(String nome, String cpf);
+	
 	@Query("select p from Passageiro p where p.id = ?1")
 	Passageiro buscarPorId(Integer id);
 }
